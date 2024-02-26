@@ -30,7 +30,7 @@ controls.enableZoom=true
 console.log(camera);
 
 // Sphère
-let imgs=[{img:"tamende.jpg",title:"Tamende"},{img:"baraque.jpg",title:"Baraque interne"},{img:"360.jpg",title:"Rue centre ville"}]
+let imgs=[{img:"360.jpg",title:"Rue centre ville"},{img:"tamende.jpg",title:"Tamende"},{img:"baraque.jpg",title:"Baraque interne"}]
 let actual=0
 const geometry = new THREE.SphereGeometry(50, 32, 32)
 const texture = new THREE.TextureLoader().load(imgs[actual]["img"])
