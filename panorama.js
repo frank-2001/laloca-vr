@@ -21,8 +21,8 @@ renderer.xr.enabled = true
 body.appendChild( renderer.domElement );
 body.appendChild( VRButton.createButton( renderer ) );
 let controls = new OrbitControls(camera, renderer.domElement);
-// controls.autoRotate=true;
-// controls.autoRotateSpeed=0
+controls.autoRotate=true;
+controls.autoRotateSpeed=2
 controls.minZoom=-20
 controls.maxZoom=20
 controls.enableZoom=true
