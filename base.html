@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+            #info {
+                position: absolute;
+                top: 10px;
+                width: 100%;
+                text-align: center;
+                z-index: 100;
+                display:block;
+                color: white;
+            }
+            body{
+                margin: 0;
+                padding: 0;
+                display: grid;
+                grid-template-rows: 10vh 90vh;
+                overflow: hidden;
+                grid-template-columns: 100vw;
+            }
+            #controls{
+                background: gray;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 50px;
+            }
+            #VRButton{
+                background: gray;
+                color: black;
+                font-weight: bolder;
+            }
+		</style>
+
+        <script type="importmap">
+            {
+              "imports": {
+                "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+              }
+            }
+          </script>
+	</head>
+	<body>
+        <div id="controls">
+            <button id="zoomin">ZOOM IN</button>
+            <button id="zoomout">ZOOM OUT</button>
+        </div>
+        
+        <div id="scene"></div>
+		<script type="module" src="/main.js"></script>
+	</body>
+</html>

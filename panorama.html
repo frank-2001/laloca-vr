@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Panorama</title>
+		<link rel="stylesheet" href="style.css">
+        <script type="importmap">
+            {
+              "imports": {
+                "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+              }
+            }
+          </script>
+	</head>
+	<body>
+        <div class="mouse"></div>
+        <div id="controls">
+            <button id="zoomin">ZOOM IN</button>
+            <button id="zoomout">ZOOM OUT</button>
+            <button id="previous"> Previous </button>
+            <button id="next">Next</button>
+        </div>
+
+        <div id="scene" style="width: 100%;height: 100vh;">
+            <div class="message">
+                LOADING...
+            </div>
+        </div>
+        <script src="jquery-3.7.1.min.js"></script>
+		<script type="module" src="/panorama.js"></script>
+	</body>
+</html>
