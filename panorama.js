@@ -16,6 +16,8 @@ camera.position.z = 1;
 
 
 const renderer = new THREE.WebGLRenderer({alpha:true});
+let cameraXr=renderer.xr.getCamera()
+
 renderer.setSize( body.clientWidth, body.clientHeight );
 renderer.xr.enabled = true
 body.appendChild( renderer.domElement );
@@ -27,7 +29,6 @@ controls.minZoom=-20
 controls.maxZoom=20
 controls.enableZoom=true
 
-console.log(camera);
 
 // Sphère
 let imgs=[{img:"360.jpg",title:"Rue centre ville"},{img:"tamende.jpg",title:"Tamende"},{img:"baraque.jpg",title:"Baraque interne"}]
@@ -59,12 +60,20 @@ function mouve(direction) {
         }
     }
     message(imgs[actual].title)
+    
+    // Update sphere
     new THREE.TextureLoader().load(imgs[actual]["img"],(t)=>{
         sphere.material.map=t
         sphere.material.needsUpdate=true
     })
+    // Reset zoom
+    camera.zoom=1
+    cameraXr.zoom=1
+    camera.updateProjectionMatrix();
+    cameraXr.updateProjectionMatrix();
     
 }
+
 function zoom(direction) {
     if (direction=="in") {
         camera.zoom+=0.2
@@ -74,8 +83,11 @@ function zoom(direction) {
     if (camera.zoom<1) {
         camera.zoom=1
     }
+    cameraXr.zoom=camera.zoom
+
     message("ZOOM ×"+ Number.parseFloat(camera.zoom).toFixed(1) ) 
     camera.updateProjectionMatrix();
+    cameraXr.updateProjectionMatrix();
 }
 $(".message").hide();
 function message(message="Salut!") {
@@ -123,13 +135,12 @@ window.addEventListener("mousemove",(e)=>{
 })
 
 window.addEventListener("load",()=>{
-    console.log("loaded");
     // animate()
+    // console.log(renderer.xr.getCamera());
     renderer.setAnimationLoop( function () {
-        camera.position.x+=0.1
+        // camera.position.x+=0.1
         // console.log(camera.position.z);
         controls.update()
-
         renderer.render( scene, camera );
     });
 })
