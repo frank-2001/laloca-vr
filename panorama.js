@@ -23,8 +23,10 @@ renderer.xr.enabled = true
 body.appendChild( renderer.domElement );
 body.appendChild( VRButton.createButton( renderer ) );
 let controls = new OrbitControls(camera, renderer.domElement);
-// controls.autoRotate=true;
-// controls.autoRotateSpeed=2
+controls.autoRotate=true;
+controls.autoRotateSpeed=2
+
+// console.log(renderer.xr.getController());
 controls.minZoom=-20
 controls.maxZoom=20
 controls.enableZoom=true
@@ -137,9 +139,14 @@ window.addEventListener("mousemove",(e)=>{
 window.addEventListener("load",()=>{
     // animate()
     // console.log(renderer.xr.getCamera());
+    setInterval(() => {
+        zoom("in")        
+    }, 2000);
+    setInterval(() => {
+        mouve("next")        
+    }, 10000);
     renderer.setAnimationLoop( function () {
-        // camera.position.x+=0.1
-        // console.log(camera.position.z);
+        
         controls.update()
         renderer.render( scene, camera );
     });
