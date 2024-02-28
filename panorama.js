@@ -89,12 +89,12 @@ function zoom(direction) {
     }
     message("ZOOM ×"+ Number.parseFloat(camera.zoom).toFixed(1) ) 
     camera.updateProjectionMatrix();
-    if (cameraXr.cameras.length>0) {
+    // if (cameraXr.cameras.length>0) {
         cameraXr.cameras[0].zoom=camera.zoom
         cameraXr.cameras[1].zoom=camera.zoom
         cameraXr.cameras[0].updateProjectionMatrix();
         cameraXr.cameras[1].updateProjectionMatrix();
-    }
+    // }
 }
 $(".message").hide();
 function message(message="Salut!") {
