@@ -89,12 +89,17 @@ function zoom(direction) {
     }
     message("ZOOM ×"+ Number.parseFloat(camera.zoom).toFixed(1) ) 
     camera.updateProjectionMatrix();
-    // if (cameraXr.cameras.length>0) {
-        cameraXr.cameras[0].zoom=camera.zoom
-        cameraXr.cameras[1].zoom=camera.zoom
-        cameraXr.cameras[0].updateProjectionMatrix();
-        cameraXr.cameras[1].updateProjectionMatrix();
-    // }
+    // if (camera.zoom !== 1) {
+        const arrCameras = renderer.xr.getCamera();
+        arrCameras.cameras[0].fov = camera.fov; // default set to 80
+        arrCameras.cameras[1].fov = camera.fov; // default set to 80
+        arrCameras.cameras[0].aspect = camera.aspect; // default set to .88
+        arrCameras.cameras[1].aspect = camera.aspect; // default set to .88
+        arrCameras.cameras[0].zoom = camera.zoom; // camera zoom is been modified using controller gamepad
+        arrCameras.cameras[1].zoom = camera.zoom; // camera zoom is been modified using controller gamepad
+        arrCameras.cameras[0].updateProjectionMatrix();
+        arrCameras.cameras[1].updateProjectionMatrix();
+    //   }
 }
 $(".message").hide();
 function message(message="Salut!") {
