@@ -18,6 +18,8 @@ camera.position.z = 1;
 const renderer = new THREE.WebGLRenderer({alpha:true});
 let cameraXr=renderer.xr.getCamera()
 
+// console.log(renderer.xr.getCamera().cameras);
+
 renderer.setSize( body.clientWidth, body.clientHeight );
 renderer.xr.enabled = true
 body.appendChild( renderer.domElement );
@@ -85,11 +87,14 @@ function zoom(direction) {
     if (camera.zoom<1) {
         camera.zoom=1
     }
-    cameraXr.zoom=camera.zoom
-
     message("ZOOM ×"+ Number.parseFloat(camera.zoom).toFixed(1) ) 
     camera.updateProjectionMatrix();
-    cameraXr.updateProjectionMatrix();
+    if (cameraXr.cameras.length>0) {
+        cameraXr.cameras[0].zoom=camera.zoom
+        cameraXr.cameras[1].zoom=camera.zoom
+        cameraXr.cameras[0].updateProjectionMatrix();
+        cameraXr.cameras[1].updateProjectionMatrix();
+    }
 }
 $(".message").hide();
 function message(message="Salut!") {
